@@ -1,0 +1,112 @@
+// applicant class
+
+package applicationprojects;
+
+public class Applicant extends Exception
+{
+ public String getMessage()
+ 
+{ 
+	 return "collect your DL ";
+
+}
+}
+
+// driver class
+
+
+package applicationprojects;
+
+import java.util.Scanner;
+
+public class Driver 
+{
+	 private int age;
+	 
+	
+	public void acceptInput()
+	{
+		 Scanner scan =  new Scanner(System.in);
+		 System.out.println("ENTER YOUR AGE");
+		 
+		 age = scan.nextInt();
+	}
+	public void verify() throws Exception
+	{
+		if(age<18)
+		{
+			System.out.println("your under age");
+		}
+		else if(age>65)
+		{
+			System.out.println("your too old please  take a rest ");
+		}
+		else
+		{
+			Applicant app = new Applicant();
+			System.out.println(app.getMessage());
+			throw app;
+					
+				
+					
+		}
+	}
+
+}
+
+//RTO CLASS
+
+package applicationprojects;
+
+public class RTO 
+{
+	public void inititate()
+	{
+		Driver d = new Driver();
+		
+		
+		
+		try
+		{
+			d.acceptInput();
+			d.verify();
+		}
+		catch(Exception e)
+		{
+			try
+			{
+				d.acceptInput();
+				d.verify();
+			}
+			catch(Exception f)
+			{
+				try
+				{
+					d.acceptInput();
+					d.verify();
+				}
+				catch(Exception g)
+				{
+					System.out.println("your eligible to DL ");
+					System.exit(0);
+				}
+			}
+		}
+		
+	}
+
+}
+// BUS CLASS 
+package applicationprojects;
+
+public class Bus {
+
+	public static void main(String[] args)
+	{
+		RTO rto = new RTO();
+		rto.inititate();
+		
+
+	}
+
+}
